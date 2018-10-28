@@ -1,0 +1,37 @@
+{
+	"scripts": {
+		"serve": "node scripts/serve",
+		"serve:dev": "cross-env supervisor -- scripts/serve",
+		"nuxt": "nuxt -c src/config",
+		"ssr": "cross-env NUXT_HOST=0.0.0.0 npm run nuxt",
+		"spa": "cross-env NUXT_HOST=0.0.0.0 npm run nuxt -- --spa",
+		"gen": "rimraf docs && nuxt generate -c src/config --spa",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint ."
+	},
+	"dependencies": {
+		"koa": "^2.5.3",
+		"koa-compose": "^4.1.0",
+		"koa-compress": "^3.0.0",
+		"koa-conditional-get": "^2.0.0",
+		"koa-etag": "^3.0.0",
+		"koa-router": "^7.4.0",
+		"koa-static": "^5.0.0"
+	},
+	"devDependencies": {
+		"cross-env": "^5.2.0",
+		"eslint": "^5.6.0",
+		"eslint-plugin-json": "^1.2.1",
+		"eslint-plugin-vue": "^4.7.1",
+		"leaflet": "^1.3.4",
+		"lodash": "^4.17.11",
+		"node-sass": "^4.9.3",
+		"pug": "^2.0.3",
+		"pug-plain-loader": "^1.0.0",
+		"qrcode-terminal": "^0.12.0",
+		"rimraf": "^2.6.2",
+		"sass-loader": "^7.1.0",
+		"stylelint": "^9.5.0",
+		"supervisor": "^0.12.0"
+	}
+}

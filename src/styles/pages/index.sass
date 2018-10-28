@@ -1,0 +1,67 @@
+.content-wrapper
+  display: flex
+  flex-flow: column
+  position: absolute
+  max-width: 100%
+  width: 100vw
+  max-height: 100%
+  height: 100vh
+
+.map-wrapper
+  position: absolute
+  width: 100%
+  height: 100%
+  z-index: 0
+
+  &.with-description
+    height: 40%
+
+.map
+  width: 100%
+  height: 100%
+
+.locate
+  position: absolute
+  overflow: hidden
+  width: 3rem
+  height: 3rem
+  left: 1.5rem
+  bottom: 1.5rem
+  top: calc(100% - 4.5em)
+  z-index: 90
+  background-color: #fff
+  border-radius: 50%
+  background-image: url("https://cdn3.iconfinder.com/data/icons/transport-3-8/128/Location-Auto-Locate-Current-Location-Geo-512.png")
+  background-size: 2rem
+  background-position: 0.5rem 0.5rem
+  background-repeat: no-repeat
+
+.description
+  display: none
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+  width: 100%
+  height: 60%
+  z-index: 99
+  background-color: #fff
+
+  &.active
+    display: unset
+
+.debug
+  position: fixed
+  top: 0
+  right: 0
+  padding: 0.25rem
+  background-color: rgba(0, 0, 0, 0.5)
+
+  p
+    padding: 0
+    color: #fff
+    font-size: 0.75rem
+
+@media (max-width: 1023px)
+  .leaflet-control-attribution
+    // display: none

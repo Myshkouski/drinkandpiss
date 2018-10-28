@@ -1,0 +1,10 @@
+div._
+	div.content-wrapper
+		div.map-wrapper(:class="{'with-description': showDescriptionUIElement}" )
+			div.map(ref="map")
+		div.locate(@click="locate")
+		//- div.debug
+			p viewCenter: {{viewCenter}}
+			p location: {{location}}
+			p ablout: {{about}}
+		DescriptionComponent.description(:class="{active: showDescriptionUIElement}" :location="this.about")
