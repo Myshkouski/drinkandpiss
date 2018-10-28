@@ -11,27 +11,14 @@ export default {
 			location: null,
 			zoom: 5,
 			map: null,
-			about: null
+			selectedMarker: null,
+			locating: false
 		}
 	},
 
 	components: {
-		DescriptionComponent: require('~/components/description').default
+		DescriptionComponent: require('~/partials/description').default
 	},
-
-	// async fetch({
-	// 	store
-	// }) {
-	// 	let waterpoints
-	//
-	// 	try {
-	// 		waterpoints = await fetch('http://localhost:8080/waterpoints')
-	// 	} catch (error) {
-	// 		waterpoints = []
-	// 	}
-	//
-	// 	store.dispatch('markers/addFetched', waterpoints)
-	// },
 
 	watch: {
 		location: '_setLocationMarker',
@@ -40,6 +27,14 @@ export default {
 		activeUIElement() {
 			this.$nextTick(() => {
 				this.map.invalidateSize(true)
+			})
+		},
+
+		markers() {
+			this.markers.forEach(marker => {
+				this._createMarker(marker, {
+					icon: this._markerIcon
+				})
 			})
 		}
 	},

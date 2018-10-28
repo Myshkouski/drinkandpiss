@@ -5,7 +5,7 @@ export const meta = [{
 	{
 		hid: 'viewport',
 		name: 'viewport',
-		content: 'width=device-width,initial-scale=1'
+		content: ['width=device-width', 'initial-scale=1', 'user-scalable=no'].join(',')
 	},
 	{
 		hid: 'yandex-verification',

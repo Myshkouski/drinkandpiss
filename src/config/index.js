@@ -2,6 +2,8 @@ import {
 	resolve
 } from 'path'
 
+import * as env from './_env'
+
 export default {
 	hooks: {
 		listen(server, options) {
@@ -13,6 +15,9 @@ export default {
 	srcDir: resolve(__dirname, '..'),
 	build: {
 		...require('./_build')
+	},
+	env: {
+		...env
 	},
 	generate: {
 		dir: 'docs',
@@ -28,7 +33,7 @@ export default {
 		// __dirname + '/api/cors'
 	],
 	router: {
-		base: process.env.ROUTER_BASE || ''
+		base: env.ROUTER_BASE
 	},
 	head: {
 		...require('./_head')

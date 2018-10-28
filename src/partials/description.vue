@@ -1,10 +1,4 @@
-<template lang="pug">
-div._
-	div.content-wrapper
-		div.close-wrapper
-			p.close-button(@click="hideDescription") Close
-		p(v-if="description") {{description.display_name}}
-</template>
+<template lang="pug" src="~/templates/partials/description.pug"></template>
 
 <script>
 import {
@@ -13,7 +7,7 @@ import {
 
 export default {
 	props: {
-		location: {}
+		marker: null
 	},
 
 	data() {
@@ -63,9 +57,10 @@ export default {
 
 	methods: {
 		async fetchDescription() {
-			if (this.location) {
-				const fetched = await fetch(`https://nominatim.osm.org/reverse?format=json&lat=${this.location[0]}&lon=${this.location[1]}`)
-				this.description = await fetched.json()
+			if (this.marker) {
+				const location = this.marker.geo
+				const description = await fetch(`https://nominatim.osm.org/reverse?format=json&lat=${location[0]}&lon=${location[1]}`)
+				this.description = await description.json()
 			}
 		},
 
@@ -76,15 +71,4 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-	.content-wrapper
-		padding: 1rem
-
-	.close-wrapper
-		text-align: right
-
-	.close-button
-		margin: 0
-		display: inline-block
-		color: #f55
-</style>
+<style lang="sass" src="~/styles/partials/description" scoped></style>

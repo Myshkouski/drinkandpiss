@@ -1,4 +1,4 @@
-export default function mounted() {
+export default async function mounted() {
 	const Leaflet = require('leaflet')
 
 	// this._handleWindowResizeEvent()
@@ -41,7 +41,7 @@ export default function mounted() {
 		maxZoom: 19
 	})
 
-	const markerIcon = new Leaflet.Icon({
+	this._markerIcon = new Leaflet.Icon({
 		iconUrl: '/img/water-drop.png',
 		iconSize: [50, 50],
 		// iconAnchor: [20, 20],
@@ -51,28 +51,27 @@ export default function mounted() {
 		// shadowAnchor: [22, 94]
 	})
 
-	this.markers.forEach(latlng => {
-		this._createMarker(latlng, {
-			icon: markerIcon
-		})
-	})
-
 	map.on('click', event => {
 		const latlng = [
 			event.latlng.lat,
 			event.latlng.lng
 		]
 
-		this._createMarker(latlng, {
-			icon: markerIcon
+		this._createMarker({
+			geo: latlng
+		}, {
+			icon: this._markerIcon
 		})
-
-		// const popup = L.popup({
-		// 	// className: 'popup'
-		// })
-
-		// popup.setContent('<p>Hello world!<br />This is a nice popup.</p>')
-
-		// marker.bindPopup(popup).openPopup()
 	})
+
+	let waterpoints
+
+	try {
+		const fetched = await fetch(process.env.ENDPOINT_WATERPOINTS)
+		waterpoints = await fetched.json()
+	} catch (error) {
+		waterpoints = []
+	}
+
+	this.$store.commit('markers/addFetchedMarkers', waterpoints)
 }

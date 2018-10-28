@@ -3,12 +3,10 @@ import {
 } from '~/config/dict'
 
 export const state = () => {
-	let localMarkers = []
-
 	return {
 		locationMarker: null,
 		fetchedMarkers: [],
-		localMarkers
+		localMarkers: []
 	}
 }
 
@@ -23,16 +21,14 @@ export const getters = {
 
 export const mutations = {
 	addLocalMarkers(state, localMarkers) {
-		state.localMarkers = localMarkers
+		state.localMarkers = [...localMarkers]
 
 		if(process.browser) {
 			window.localStorage.setItem(localStorageMarkerKey, JSON.stringify(localMarkers))
 		}
-	}
-}
+	},
 
-export const actions = {
-	async addFetched(state, fetchedMarkers) {
-
+	addFetchedMarkers(state, fetchedMarkers) {
+		state.fetchedMarkers = [...fetchedMarkers]
 	}
 }

@@ -1,0 +1,17 @@
+div._
+	div.content-wrapper
+		div.close-wrapper
+			p.close-button(@click="hideDescription") Close
+		article(v-if="description")
+			section(v-if="description.address")
+				p Address:
+				span(v-if="description.address.road")| {{description.address.road}}, 
+				span(v-if="description.address.house_number")| {{description.address.house_number}}, 
+				span(v-if="description.address.city")| {{description.address.city}}
+			section(v-if="'lat' in description && 'lon' in description")|
+				p Geo:
+				span {{description.lat}},
+				span {{description.lon}}
+			section.about(v-if="marker && marker.about")
+				p About:
+				span {{marker.about}}

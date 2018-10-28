@@ -3,6 +3,8 @@ export function locate() {
 		map
 	} = this
 
+	this.locating = true
+
 	map.locate({
 		enableHighAccuracy: true
 	}).once('locationfound', event => {
@@ -13,6 +15,8 @@ export function locate() {
 
 		this.zoom = 16
 		this.viewCenter = this.location
+
+		this.locating = false
 	}).once('locationerror', async event => {
 		try {
 			const hostname = 'http://api.petabyet.com/geoip/'
@@ -31,15 +35,18 @@ export function locate() {
 			console.error('Cannot locate by IP address using ' + hostname)
 			console.error(error)
 		}
+
+		this.locating = false
 	})
 }
 
-export function _createMarker(latlng, options) {
+export function _createMarker(marker, options) {
 	const Leaflet = require('leaflet')
 
-	const marker = new Leaflet.Marker(latlng, options)
-	marker.on('click', event => {
-		this.viewCenter = this.about = [...latlng]
+	const _marker = new Leaflet.Marker(marker.geo, options)
+	_marker.on('click', event => {
+		this.viewCenter = marker.geo
+		this.selectedMarker = marker
 		this.$store.commit('ui/setActiveUIElement', 'description')
 	}).addTo(this.map)
 

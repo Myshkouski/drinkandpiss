@@ -1,6 +1,6 @@
 export default {
   components: {
-    MenuComponent: require('~/components/menu').default
+    MenuComponent: require('~/partials/menu').default
   },
 
   data() {
