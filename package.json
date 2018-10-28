@@ -5,7 +5,7 @@
 		"nuxt": "nuxt -c src/config",
 		"ssr": "cross-env NUXT_HOST=0.0.0.0 npm run nuxt",
 		"spa": "cross-env NUXT_HOST=0.0.0.0 npm run nuxt -- --spa",
-		"gen": "rimraf docs && cross-env ENDPOINT_WATERPOINTS=//alexeimyshkouski-1.herokuapp.com/waterpoint nuxt generate -c src/config --spa",
+		"gen": "rimraf docs && cross-env ENDPOINT_WATERPOINTS=//alexeimyshkouski-1.herokuapp.com/waterpoints nuxt generate -c src/config --spa",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint ."
 	},
