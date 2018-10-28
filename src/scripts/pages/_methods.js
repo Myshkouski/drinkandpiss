@@ -15,7 +15,8 @@ export function locate() {
 		this.viewCenter = this.location
 	}).once('locationerror', async event => {
 		try {
-			const geoip = await fetch('http://api.petabyet.com/geoip/')
+			const hostname = 'http://api.petabyet.com/geoip/'
+			const geoip = await fetch(hostname)
 
 			const {
 				latitude,
@@ -27,7 +28,8 @@ export function locate() {
 				longitude
 			]
 		} catch (error) {
-			alert(error)
+			console.error('Cannot locate by IP address using ' + hostname)
+			console.error(error)
 		}
 	})
 }

@@ -21,13 +21,25 @@ export default function mounted() {
 
 	const attribution = Leaflet.control.attribution({
 		position: 'bottomright',
-		prefix: 'Drink&Peace'
+		prefix: 'Drink&Piss'
 	}).addTo(map)
 
-	const tileLayer = Leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.{ext}', {
-		attribution: 'Powered by OpenStreetMaps',
-		ext: 'png'
+	let tileHostname
+	tileHostname = 'http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg'
+	// tileHostname = 'https://{s}.tile.osm.org/{z}/{x}/{y}.{ext}'
+	tileHostname = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+
+	const tileLayer1 = Leaflet.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}{r}.png', {
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+		subdomains: 'abcd',
+		maxZoom: 19
 	}).addTo(map)
+
+	const tileLayer2 = Leaflet.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+		subdomains: 'abcd',
+		maxZoom: 19
+	})
 
 	const markerIcon = new Leaflet.Icon({
 		iconUrl: '/img/water-drop.png',
