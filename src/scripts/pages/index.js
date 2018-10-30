@@ -17,6 +17,7 @@ export default {
 	},
 
 	components: {
+		'base-layout': require('~/partials/base-layout').default,
 		DescriptionComponent: require('~/partials/description').default
 	},
 

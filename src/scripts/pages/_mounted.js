@@ -1,6 +1,8 @@
 export default async function mounted() {
 	const Leaflet = require('leaflet')
 
+	window.addEventListener('resize', console.warn)
+
 	// this._handleWindowResizeEvent()
 	// window.addEventListener('resize', this._handleWindowResizeEvent)
 

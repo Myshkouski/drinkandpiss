@@ -1,11 +1,12 @@
-div._
+base-layout._
+	div.locate(:class="{spinned: locating}" @click="locate")
 	div.content-wrapper
 		div.map-wrapper(:class="{'with-description': showDescriptionUIElement}" )
 			div.map(ref="map")
-		div.locate(:class="{spinned: locating}" @click="locate")
 		//- div.debug
 			p viewCenter: {{viewCenter}}
 			p location: {{location}}
 			p ablout: {{about}}
 			p markers: {{markers}}
-		DescriptionComponent.description(:class="{active: showDescriptionUIElement}" :marker="this.selectedMarker")
+		transition
+			DescriptionComponent.description(:class="{active: showDescriptionUIElement}" :marker="this.selectedMarker")
